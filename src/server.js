@@ -11,7 +11,7 @@ import {connectDB} from "./db.js";
 import {User,Food,Order} from "./models.js";
 
 const app=express();
-app.disable("x-powered-by");app.use(helmet());app.use(cors({origin:process.env.CLIENT_URL||"http://localhost:5173"}));app.use(express.json({limit:"100kb"}));
+app.disable("x-powered-by");app.use(helmet());app.use(cors({origin:process.env.CLIENT_URL||"https://qb-frontend-lemon.vercel.app/"}));app.use(express.json({limit:"100kb"}));
 app.use("/api",rateLimit({windowMs:60000,limit:180,standardHeaders:true,legacyHeaders:false}));
 const fail=(res,status,message)=>res.status(status).json({message});
 const distanceKm=(a,b)=>{const r=Math.PI/180,dLat=(b.latitude-a.latitude)*r,dLon=(b.longitude-a.longitude)*r,x=Math.sin(dLat/2)**2+Math.cos(a.latitude*r)*Math.cos(b.latitude*r)*Math.sin(dLon/2)**2;return 6371*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))};
